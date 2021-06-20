@@ -1,0 +1,93 @@
+
+<!--inicia tabla aquí-->
+<table
+  style="
+    max-width: 500px;
+    padding: 10px;
+    margin: 0 auto;
+    border-collapse: collapse;">
+	<!--Head email-->
+    <tr>
+		<th colspan="2"
+            style="background-color: #ecf0f1; text-align: left; padding: 0">
+            <a href="#"> <img
+                width="100%"
+                style="display: block; margin: 1.5% 3%"
+                src="<%= ENV['APP_DOMAIN'] %><%= asset_path 'cab_emailing.png' %>"
+                />
+            </a>
+
+        </th>
+	</tr>
+
+
+<!--Body email-->
+    <tr>
+	    <td style="background-color: #ecf0f1">
+            <div class="media"  style="color: #5dade2;font-size: 12px; margin: 0 0 6px;margin-left: 20px;> ">
+               <h4> Bienvenido: <%= @ticket.client&.name %> </h4>
+            </div>
+
+                <div class="media" style="font-family: Verdana;color: #2C5A78 ;font-size: 12px;
+                  margin-left: 20px;
+                  margin-right: auto;
+                  width: 250px;">
+                <p> Respuesta a su caso :</p>
+
+                 <% @ticket.ticket_threads.thread_type_limit.each do |t| %>
+                 <li class="event-list">
+                  <%= t.created_at.strftime("%F") %>
+                  <%= raw t.body %>
+                 </li>
+                 <%end%>
+            </div>
+      </td>
+
+        <td style="background-color: #ecf0f1">
+
+              <a href="#">
+                    <img  width="100%" style="display: block; margin: 1.5% 3%"
+                    src="<%= ENV['APP_DOMAIN'] %><%= asset_path 'body_emailing.png' %>" />
+                </a>
+
+         </td>
+
+
+    </tr>
+
+    <tr>
+
+    </tr>
+    <!--Pie email-->
+
+        <td colspan="2" style="background-color: #ecf0f1; text-align: left; padding: 0">
+        <div style="width: 100%; text-align: center">
+          <a
+            style="
+              text-decoration: none;
+              border-radius: 5px;
+              padding: 11px 23px;
+              color: white;
+              background-color: #3498db;
+            "
+            href="<%= ENV['APP_DOMAIN'] %>/ticket_questions/actividades/<%=@ticket.uuid %>"
+            target="_blank"
+            >Actividades</a
+          >
+        </div>
+    </td>
+    <tr>
+	    <td colspan="2" style="background-color: #ecf0f1; text-align: left; padding: 0">
+          <a href="#">
+            <img
+            width="100%"
+            style="display: block; margin: 1.5% 3%"
+            src="<%= ENV['APP_DOMAIN'] %><%= asset_path 'pie_emailing.png' %>"
+             />
+           </a>
+        </td>
+    </tr>
+</td>
+</tr>
+</table>
+<!--hasta aquí-->

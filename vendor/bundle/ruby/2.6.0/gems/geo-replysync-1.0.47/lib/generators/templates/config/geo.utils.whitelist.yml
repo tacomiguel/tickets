@@ -1,0 +1,5 @@
+Tables:
+  Users:
+    fields:
+      - email
+      - encrypted_password

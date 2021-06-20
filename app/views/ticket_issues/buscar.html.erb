@@ -1,0 +1,20 @@
+
+
+<%=@result["id"] %>
+<%=@result["name"] %>
+
+
+<%= form_for :issue, url:ticket_issues_path do |form| %>
+   <div class="d-none">
+
+    <%= form.text_field :ticket_id, value: 1 %>
+    <%= form.text_field :issue_id, value: @result["id"] %>
+    <%= form.text_field :cliente, value: @result["name"] %>
+    <%= form.text_field :cliente_id, value: @result["username"] %>
+    <%= form.text_field :imei, value: @result["phone"] %>
+  </div>
+
+  <div class="container text-center h-100 bg-info d-flex justify-content-center align-items-center">
+    <%= form.submit "Enviar", class: "btn btn-primary rounded-pill pl-5 pr-5"  %>
+  </div>
+<%end%>

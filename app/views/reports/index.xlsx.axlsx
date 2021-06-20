@@ -1,0 +1,6 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Tickets") do |sheet|
+  @report_data.each do |t|
+    sheet.add_row [t.id,t.asunto,t.cliente,t.prioridad,t.estatus,t.departamento,t.asignado,t.fec_inicio]
+  end
+end

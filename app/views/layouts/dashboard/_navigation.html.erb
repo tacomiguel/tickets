@@ -1,0 +1,37 @@
+<ul class="metismenu list-unstyled mm-show" id="side-menu">
+  <li class="menu-title">Menu</li>
+
+  <li>
+    <a href="<%= tickets_path %>" class="waves-effect">
+      <i class="bx bx-purchase-tag-alt"></i>
+      <span>Tickets</span>
+    </a>
+  </li>
+
+ <li>
+    <a href="<%= reports_path %>" class="waves-effect">
+      <i class="bx bxs-printer"></i>
+      <span>Reportes</span>
+    </a>
+  </li>
+
+  <li>
+    <a href="javascript: void(0);" class="has-arrow waves-effect">
+      <i class="bx bx-wrench"></i>
+      <span>Mantenimientos</span>
+    </a>
+    <ul class="sub-menu" aria-expanded="true">
+      <li><a href="<%= departaments_path %>">Departamentos</a></li>
+      <li><a href="<%= clients_path %>">Usuarios finales</a></li>
+      <li>
+        <a href="javascript: void(0);" class="has-arrow">Tickets</a>
+        <ul class="sub-menu" aria-expanded="true">
+          <li><a href="<%= ticket_statuses_path %>">Estados</a></li>
+          <li><a href="<%= ticket_priorities_path %>">Prioridades</a></li>
+          <li><a href="<%= ticket_sources_path %>">Origenes</a></li>
+          <li><a href="<%= ticket_reasons_path %>">Motivos de Cierre</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>

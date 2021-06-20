@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @ticket_source.name %>
+</p>
+
+<%= link_to 'Edit', edit_ticket_source_path(@ticket_source) %> |
+<%= link_to 'Back', ticket_sources_path %>

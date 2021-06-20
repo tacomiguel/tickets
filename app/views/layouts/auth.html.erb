@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="Geosatelital App" name="description" />
+    <meta content="Geosatelital" name="author" />
+    <meta name="theme-color" content="#2a3042" />
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <title><%= content_for?(:title) ? yield(:title) : "Geosatelital" %></title>
+
+    <%= favicon_link_tag 'https://cdn1.geolabs.pw/images/favicon.ico' %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+    <%= javascript_include_tag 'https://cdn1.geolabs.pw/js/libs/jquery/jquery.min.js', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'https://cdn1.geolabs.pw/js/libs/bootstrap/js/bootstrap.bundle.min.js', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'https://cdn1.geolabs.pw/js/libs/metismenu/metisMenu.min.js', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'https://cdn1.geolabs.pw/js/libs/simplebar/simplebar.min.js', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'https://cdn1.geolabs.pw/js/libs/node-waves/waves.min.js', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'https://cdn1.geolabs.pw/js/app-rails.min.js', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <!-- Preloader Start -->
+    <div id="preloader">
+      <div id="status">
+        <div class="spinner-chase">
+          <div class="chase-dot"></div>
+          <div class="chase-dot"></div>
+          <div class="chase-dot"></div>
+          <div class="chase-dot"></div>
+          <div class="chase-dot"></div>
+          <div class="chase-dot"></div>
+        </div>
+      </div>
+    </div>
+    <!-- Preloader End -->
+
+    <div class="account-pages my-5 pt-sm-5">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-8 col-lg-6 col-xl-5">
+            <%= yield %>
+            <%= render partial: 'layouts/auth/footer' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

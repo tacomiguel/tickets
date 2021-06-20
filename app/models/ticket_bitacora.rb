@@ -1,0 +1,3 @@
+class TicketBitacora < ApplicationRecord
+
+end

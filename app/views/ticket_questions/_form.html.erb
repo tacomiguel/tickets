@@ -1,0 +1,56 @@
+<body class="h-100 bg-primary">
+    <div class="container h-100">
+        <div class="row justify-content-center h-100">
+            <div class="col-sm-8 align-self-center text-left">
+                <div class="card shadow">
+                    <div class="card-body">  
+                      <div class="container text-center h-100 bg-info d-flex justify-content-center align-items-center">
+                        <h1 class="m-5">ENCUESTA</h1>   
+                      </div>
+                      <%p=[],d=[],c=[],i=0 %>
+                     <%@question.each do |q|%>
+                        <% d[i]= q.id%>
+                        <% p[i]= q.name%>
+                        <% c[i]= q.campo%>
+                        <%i+=1%>
+                     <%end%>
+          
+                                            
+                      <%= form_for :question, url:ticket_questions_path do |form| %>
+      
+                        <div class="d-none">
+                            <%= form.text_field :ticket_id, value: @ticket.id %>
+                        </div>
+                   
+
+                        <%(0..3).each do |x| %>
+                        <div class="alert alert-primary" role="alert">
+                        <h2 class="card-title"> <%=p[x]%> </h2>
+                            <%@questionthreads.thread_id(d[x]).each do |q|%>
+                              <div class="custom-control custom-radio mb-2">
+                                <input class="form-check-input" type="radio" name=<%="question[#{c[x]}]"%> value=<%=q.valor%> >
+                                <%= form.label :label,  q.name  %>
+                              </div>
+                            <%end%>
+                        </div>
+                        <%end%>
+                   
+                        <div class="alert alert-primary" role="alert">
+                          <h2 class="card-title"><%=p[4]%> </h2>
+                          <textarea id="basicpill-address-input" class="form-control"  name=<%="question[#{c[4]}]"%> rows="2"></textarea>
+                        </div>
+                
+
+                        <div class="container text-center h-100 bg-info d-flex justify-content-center align-items-center">
+                          <%= form.submit "Enviar", class: "btn btn-primary rounded-pill pl-5 pr-5"  %>
+                        </div>
+                    
+                     
+                      <% end %>  
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  
+</body>

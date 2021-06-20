@@ -1,0 +1,29 @@
+<%= form_with(model: ticket_status, local: true) do |form| %>
+  <div class="form-group row mb-3">
+    <%= form.label :name, class: 'col-form-label col-lg-2' %>
+    <div class="col-lg-10">
+      <% if ticket_status.system_status? %>
+        <%= form.text_field :name, class: 'form-control-plaintext', readonly: true %>
+      <% else%>
+        <%= form.text_field :name, class: 'form-control' %>
+      <% end%>
+    </div>
+  </div>
+
+  <% if ticket_status.persisted? && !ticket_status.default? %>
+    <div class="form-group row justify-content-end mb-3">
+      <div class="col-lg-10">
+        <div class="custom-control custom-checkbox">
+          <%= form.check_box :default, class: 'custom-control-input' %>
+          <%= form.label :default, 'Default', class: 'custom-control-label' %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="row justify-content-end">
+    <div class="col-lg-10">
+      <%= form.submit class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>

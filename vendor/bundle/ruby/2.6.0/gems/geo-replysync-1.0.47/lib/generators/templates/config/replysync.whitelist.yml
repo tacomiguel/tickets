@@ -1,0 +1,37 @@
+# Tables:
+#   Models:
+#     fields:
+#       app_field_name: endpoint_field_name
+#     ids:
+#       - app_field_name
+
+########## TENER ENCUENTA ##########
+# Solo renombrar los app_field_name de acuerdo a las columnas que tienen en su proyecto
+# Si un field no existe en su proyecto comentarlo o quitarlo para que no arroje un error
+# En vehiculos la eliminacion puede ser fisica(physical) o logica(soft)
+# Si no se desea eliminar ningun vehiculo solo comentar el key delete
+
+Tables:
+  Clients:
+    fields:
+      document: document
+      business_name: name
+      user: panel_user
+      deleted_at: deleted_at
+    ids:
+      - document
+  Vehicles:
+    fields:
+      imei: imei
+      plate: plate
+      phone: phone
+      name: name
+      code: code
+      brand: brand
+      deleted_at: deleted_at
+      enabled_status: enabled_status
+      client_id: client_id
+    ids:
+      - imei
+    delete: soft
+    atx: false

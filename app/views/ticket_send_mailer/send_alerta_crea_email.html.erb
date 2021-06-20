@@ -1,0 +1,16 @@
+
+    <div class="card">
+      <div class="card-header">
+        <h4>Estimado : <%= @ticket.creator&.email %> </h4> 
+        <h4> Se cerro el caso asignado #: <%=@ticket.id %> </h4>
+          <h4> Caso     :  <%= @ticket.title %> </h4>
+          <h4> Estado   :  <%= @ticket.ticket_status&.name %> </h4>
+          <h4> Prioridad:  <%= @ticket.ticket_priority&.name %> </h4>
+
+          
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">   </h5>
+          <a href="<%= ENV['APP_DOMAIN'] %>/tickets/<%=@ticket.uuid %>" target="_blank">Ingrese al ticket <i class="mdi mdi-arrow-right ml-1"></i></a>
+      </div>
+    </div>

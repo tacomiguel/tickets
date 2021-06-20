@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="Geosatelital App" name="description" />
+    <meta content="Geosatelital" name="author" />
+    <meta name="theme-color" content="#2a3042" />
+    <%= yield(:head_metas) %>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <title><%= content_for?(:title) ? yield(:title) : "Geosatelital" %></title>
+
+    <%= favicon_link_tag 'https://cdn1.geolabs.pw/images/favicon.ico' %>
+
+    <%= yield(:head_styles) %>
+    <%= stylesheet_link_tag 'https://cdn.jsdelivr.net/npm/spectrum-colorpicker2/dist/spectrum.min.css', 'data-turbolinks-track': 'reload', defer: true %>
+    <%= stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.min.css', 'data-turbolinks-track': 'reload', defer: true %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+    <%= javascript_include_tag 'https://cdn1.geolabs.pw/js/libs/jquery/jquery.min.js', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'https://cdn1.geolabs.pw/js/libs/bootstrap/js/bootstrap.bundle.min.js', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'https://cdn1.geolabs.pw/js/libs/metismenu/metisMenu.min.js', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'https://cdn1.geolabs.pw/js/libs/simplebar/simplebar.min.js', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'https://cdn1.geolabs.pw/js/libs/node-waves/waves.min.js', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'https://cdn1.geolabs.pw/js/app-rails.min.js', 'data-turbolinks-track': 'reload' %>
+
+    <%= javascript_include_tag 'https://cdn.jsdelivr.net/npm/spectrum-colorpicker2/dist/spectrum.min.js', 'data-turbolinks-track': 'reload', defer: true %>
+    <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.min.js', 'data-turbolinks-track': 'reload', defer: true %>
+    <%= yield(:head_scripts) %>
+
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body data-sidebar="dark" data-keep-enlarged="true" class="vertical-collpsed">
+    <!-- ******************** Page Start ******************** -->
+    <!-- ******************** Page Start ******************** -->
+
+    <!-- Preloader Start -->
+    <div id="preloader">
+      <div id="status">
+        <div class="spinner-chase">
+          <div class="chase-dot"></div>
+          <div class="chase-dot"></div>
+          <div class="chase-dot"></div>
+          <div class="chase-dot"></div>
+          <div class="chase-dot"></div>
+          <div class="chase-dot"></div>
+        </div>
+      </div>
+    </div>
+    <!-- Preloader End -->
+
+    <!-- Main Content Start -->
+    <div id="layout-wrapper">
+      <!-- Header Start -->
+      <%= render partial: 'layouts/dashboard/header' %>
+      <!-- Header End -->
+
+      <!-- ========== Left Sidebar Start ========== -->
+      <div class="vertical-menu">
+        <div data-simplebar class="h-100">
+          <!-- Sidemenu Start -->
+          <div id="sidebar-menu">
+            <!-- Left Menu Start -->
+            <%= render partial: 'layouts/dashboard/navigation' %>
+            <!-- Left Menu Emd -->
+          </div>
+          <!-- Sidemenu Emd -->
+        </div>
+      </div>
+      <!-- ========== Left Sidebar End ========== -->
+
+      <!-- ========== Start Right Content Start ========== -->
+      <div class="main-content">
+        <!-- Page Content Start -->
+        <div class="page-content">
+          <div class="container-fluid">
+            <% if notice %>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+              <%= notice %>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <% end %>
+            <% if alert %>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <%= alert %>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <% end %>
+            <%= yield(:breadcrumb) %>
+            <%= yield %>
+          </div>
+        </div>
+        <!-- Page Content End -->
+
+        <!-- Footer Start -->
+        <%= render partial: 'layouts/dashboard/footer' %>
+        <!-- Footer Start -->
+      </div>
+      <!-- ========== Start Right Content End ========== -->
+    </div>
+    <!-- Main Content End -->
+
+    <!-- ******************** Page End ******************** -->
+    <!-- ******************** Page End ******************** -->
+
+    <!-- Right Sidebar -->
+    <div class="right-bar">
+      <div data-simplebar class="h-100">
+        <div class="rightbar-title px-3 py-4">
+          <a href="javascript:void(0);" class="right-bar-toggle float-right">
+            <i class="mdi mdi-close noti-icon"></i>
+          </a>
+          <h5 class="m-0">Titulo principal</h5>
+        </div>
+
+        <hr class="mt-0" />
+        <h6 class="text-center mb-0">Titulo secundario</h6>
+
+        <div class="p-4">
+        </div>
+
+      </div> <!-- end slimscroll-menu-->
+    </div>
+    <!-- /Right-bar -->
+
+    <!-- Right Bar Overlay Start -->
+    <div class="rightbar-overlay"></div>
+    <!-- Right Bar Overlay End -->
+  </body>
+</html>

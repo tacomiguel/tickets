@@ -1,0 +1,104 @@
+<%= form_for(@ticket, local: true, html: { id: 'js-form-ticket' }) do |form| %>
+
+  <%= form.hidden_field :client_source, value: @ticket.client_source || 'select' %>
+
+  <% if @ticket.client_source.to_s != 'form_client' %>
+  <div class="form-group row mb-3">
+    <%= form.label :client_id, class: 'col-form-label form-label-required col-lg-2' %>
+    <div class="col-lg-10">
+      <div class="d-flex">
+        <%= form.collection_select :client_id, Client.select_options, :id, :name, { include_blank: '-', selected: @ticket.client_id }, { class: 'form-control' } %>
+        <button type="button" class="btn btn-success ml-2" id="js-btn-new-client">Nuevo</button>
+      </div>
+    </div>
+  </div>
+  <% end %>
+
+  <div id="js-form-client-fields" style="display: <%= @ticket.client_source.to_s == 'form_client' ? 'block' : 'none' %>;">
+    <%= form.fields_for :client do |ff| %>
+      <div class="form-group row mb-3">
+        <%= ff.label :name, class: 'col-form-label form-label-required col-lg-2' %>
+        <div class="col-lg-10">
+          <%= ff.text_field :name, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group row mb-3">
+        <%= ff.label :email, class: 'col-form-label form-label-required col-lg-2' %>
+        <div class="col-lg-10">
+          <%= ff.text_field :email, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group row mb-3">
+        <%= ff.label :phone, class: 'col-form-label col-lg-2' %>
+        <div class="col-lg-10">
+          <%= ff.text_field :phone, class: 'form-control' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="form-group row mb-3">
+    <%= form.label :title, class: 'col-form-label form-label-required col-lg-2' %>
+    <div class="col-lg-10">
+      <%= form.text_field :title, class: 'form-control' %>
+    </div>
+  </div>
+
+  <%= form.fields_for :ticket_threads do |ff| %>
+    <%= ff.hidden_field :thread_type, value: :public_thread %>
+
+    <div class="form-group row mb-2 mb-lg-3">
+      <%= ff.label :body, 'Descripción Problema', class: 'col-form-label form-label-required col-lg-2' %>
+      <div class="col-lg-10">
+        <%= ff.hidden_field :body, id: "ticket_thread_body" %>
+        <trix-editor input="ticket_thread_body"></trix-editor>
+      </div>
+    </div>
+
+    <div class="form-group row mb-2">
+      <%= ff.label :attachments, class: 'col-form-label col-lg-2' %>
+      <div class="col-lg-10">
+        <%= ff.file_field :attachments, class: 'form-control-file', multiple: true %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="form-group row mb-3">
+    <%= form.label :ticket_priority_id, class: 'col-form-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= form.collection_select :ticket_priority_id, TicketPriority.select_options, :id, :name, { include_blank: '-', selected: @ticket.ticket_priority_id }, { class: 'form-control' } %>
+    </div>
+  </div>
+
+  <div class="d-none">
+    <%= form.label :ticket_status_id, class: 'col-form-label form-label-required col-lg-2' %>
+    <div class="col-lg-10">
+      <%= form.collection_select :ticket_status_id, TicketStatus.select_options, :id, :name, { include_blank: '-', selected: @ticket.ticket_status_id || TicketStatus.current_default.id }, { class: 'form-control' } %>
+      <%= form.text_field  :ticket_source_id, value: 1 %>
+    </div>
+  </div>
+
+   
+
+  <div class="d-none">
+    <%= form.label :departament_id, class: 'col-form-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= form.collection_select :departament_id, Departament.select_options, :id, :name, { include_blank: '-', selected: @ticket.departament_id }, { class: 'form-control' } %>
+    </div>
+  </div>
+
+  <div class="form-group row mb-3">
+    <%= form.label :assigned_user_id, class: 'col-form-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= form.collection_select :assigned_user_id, User.select_options, :id, :name, { include_blank: '-', selected: @ticket.assigned_user_id }, { class: 'form-control' } %>
+    </div>
+  </div>
+
+  <div class="row justify-content-end">
+    <div class="col-lg-10">
+      <%= form.submit class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>

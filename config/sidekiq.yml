@@ -1,0 +1,7 @@
+---
+:concurrency: 3
+production:
+  :concurrency: <%= ENV.fetch("SIDEKIQ_CONCURRENCY") { 3 } %>
+:queues:
+  - sync
+  - default

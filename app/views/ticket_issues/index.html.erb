@@ -1,0 +1,9 @@
+
+<%= form_tag "ticket_issues/buscar", method: :get do%>
+  <%= text_field_tag :keyword, nil, placeholder: "buscar" %>
+  <%= content_tag :button, type: :summit do%>
+    Buscar
+  <%end%>
+<%end%>
+
+

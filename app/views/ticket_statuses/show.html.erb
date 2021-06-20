@@ -1,0 +1,53 @@
+<% content_for :breadcrumb do %>
+  <div class="row">
+    <div class="col-12">
+      <div class="page-title-box d-flex align-items-center justify-content-between">
+        <h4 class="mb-0 font-size-18">Estados</h4>
+
+        <div class="page-title-right">
+          <ol class="breadcrumb m-0">
+            <li class="breadcrumb-item"><a href="<%= ticket_statuses_path %>">Estados</a></li>
+            <li class="breadcrumb-item active"><%= @ticket_status.name %></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title mb-3">Detalle Estado</h4>
+        <hr>
+
+        <table class="table table-details mb-0">
+          <tbody>
+            <tr>
+              <th scope="row" style="width: 150px;">Nombre:</th>
+              <td><%= @ticket_status.name || '-' %></td>
+            </tr>
+            <tr>
+              <th scope="row">Estado:</th>
+              <td><%= TicketStatus.translate_enum_name(:status, @ticket_status.status) %></td>
+            </tr>
+            <tr>
+              <th scope="row">Registrado:</th>
+              <td><%= @ticket_status.created_at.strftime('%d/%m/%Y %I:%M %p') %></td>
+            </tr>
+            <tr>
+              <th scope="row">Actualizado:</th>
+              <td><%= @ticket_status.updated_at.strftime('%d/%m/%Y %I:%M %p') %></td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= link_to 'Editar', edit_ticket_status_path(@ticket_status) %> |
+<%= link_to 'Atrás', ticket_statuses_path %>

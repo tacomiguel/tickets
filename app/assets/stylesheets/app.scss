@@ -1,0 +1,39 @@
+.noti-icon .badge {
+  right: 4px;
+}
+
+.trix-button-group--file-tools {
+  display: none !important;
+}
+
+.table-details {
+  th, td {
+    border: none;
+    padding: 0;
+    padding-bottom: .75rem;
+  }
+}
+
+.box-priority-color {
+  width: 40px;
+  height: 20px;
+  background-color: transparent;
+}
+
+.form-label-required::after {
+  display: inline-block;
+  content: '(*)';
+  margin-left: 2px;
+}
+
+.ticket-threads-item {
+  &--client .card-header {
+    background-color: rgba(#50a5f1, .3);
+  }
+  &--user .card-header {
+    background-color: rgba(#f1b44c, .3);
+  }
+  &--user.ticket-threads-item--internal-thread .card-header {
+    background-color: rgba(#f1b44c, .1);
+  }
+}

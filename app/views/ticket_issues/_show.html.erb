@@ -1,0 +1,54 @@
+
+
+<!-- Modal -->
+<div class="modal fade" id="Mymodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        
+     
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+    <%@result['data'].each do |r| %>
+
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <h5> Datos del Caso</h5>
+                <span class="badge badge-primary badge-pill"><%= r['issue']['id']%></span>
+            </li>
+      <div class="container">
+      
+            <dl>
+              <dt>Empresa:</dt>
+              <dd>Documento  : <%= r['client']['document']%></dd>
+              <dd>Nombre       : <%= r['client']['name']%></dd>
+              <dt>Vehiculo:</dt>
+              <dd>Placa    : <%= r['vehicle']['plate']%></dd>
+              <dd>Imei     : <%= r['vehicle']['imei']%></dd>
+              <dd>Sim Card : <%= r['vehicle']['simcard']%></dd>
+              <dt>Evento:</dt>
+              <dd>Nombre : <%= r['issue']['event']['name']%></dd>
+              <dd>Tipo   : <%= r['issue']['event']['code']%></dd>
+              <dd>Inicio : <%= r['issue']['issued_at']%></dd>
+              <dd>Creado : <%= r['issue']['created_at']%></dd>
+              <dt>Lugar:</dt>
+              <dd>Direccion : <%= r['issue']['location']['direction']%></dd>
+              <dd>Latitud   : <%= r['issue']['location']['latitude']%></dd>
+              <dd>Latitud   : <%= r['issue']['location']['longitude']%></dd>
+        
+            
+            </dl>
+        
+        </div>
+      <%end%>
+
+  
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      
+      </div>
+    </div>
+  </div>
+</div>

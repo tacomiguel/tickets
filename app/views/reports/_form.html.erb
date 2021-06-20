@@ -1,0 +1,99 @@
+<% content_for :breadcrumb do %>
+  <div class="row">
+    <div class="col-12">
+      <div class="page-title-box d-flex align-items-center justify-content-between">
+        <h4 class="mb-0 font-size-18">Reporte Tickets</h4>
+
+        <div class="page-title-right">
+          <ol class="breadcrumb m-0">
+            <li class="breadcrumb-item"><a href="javascript: void(0);">Menu</a></li>
+            <li class="breadcrumb-item active">Reporte Tickets</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<form class="form-inline">
+<%= form_tag report_path(1), method: :get do %>
+  <div class="form-group mx-sm-3 mb-2">
+    <%= select_tag :format, options_for_select([['HTML','html'], ['EXCEl','xlsx']], :selected => :format) %>
+ </div>
+
+  <div class="form-group mx-sm-3 mb-2">
+    <%= text_field_tag :title, params[:title], class: "form-control", placeholder: "Asunto" %>
+  </div>
+   <div class="form-group mx-sm-3 mb-2">
+    <%= select_tag :cliente_id, options_from_collection_for_select(Client.all, "id", "name", params[:cliente_id]), prompt: "Cliente", class: "form-control" %>
+  </div>
+  <div class="form-group mx-sm-3 mb-2">
+    <%= select_tag :status_id, options_from_collection_for_select(TicketStatus.all, "id", "name", params[:status_id]), prompt: "Estatus", class: "form-control" %>
+  </div>
+ <div class="form-group mx-sm-3 mb-2">
+    <%= select_tag :priority_id, options_from_collection_for_select(TicketPriority.all, "id", "name", params[:priority_id]), prompt: "Prioridad", class: "form-control" %>
+  </div> 
+  <div class="form-group mx-sm-3 mb-2">
+    <%= select_tag :asigned_user_id, options_from_collection_for_select(User.all, "id", "name", params[:asigned_user_id]), prompt: "Asignado", class: "form-control" %>
+  </div>
+
+  <%= submit_tag "Buscar", name: nil, class: "btn btn-primary btn-md" %>
+<% end %>
+</form>
+
+<%= column_chart @data, stacked: true %>
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title mb-4">Reporte Tickets</h4>
+       
+        
+        <div class="table-responsive">
+          <table class="table table-centered table-hover table-nowrap mb-0">
+            <thead class="thead-light">
+              <tr>
+                <th>ID</th>
+                <th>Asunto</th>
+                <th>Cliente</th>
+                <th>Prioridad</th>
+                <th>Estatus</th>
+                <th>Asignado</th>
+                <th>Departamento</th>
+                <th>Creador</th>
+                <th>Fecha reg</th>
+     
+              </tr>
+            </thead>
+            <tbody>
+  
+              <% @report_data.each do |ticket| %>
+                <tr>
+                  <td><%= ticket.id %></td>
+                  <td><%= ticket.asunto %></td>
+                  <td><%= ticket.cliente %></td>
+                  <td><%= ticket.prioridad %></td>
+                  <td><%= ticket.estatus %></td>
+                  <td><%= ticket.asignado %></td>
+                  <td><%= ticket.departamento %></td>
+                  <td><%= ticket.creado %></td>
+                  <td><%= ticket.fec_inicio %></td>
+                      
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <!-- end table-responsive -->
+
+        <%# <div class="d-flex justify-content-end pt-3">
+          <%== pagy_bootstrap_nav(@pagy) %> 
+        <%# </div> %>
+
+        
+  
+      </div>
+    </div>
+  </div>
+</div>

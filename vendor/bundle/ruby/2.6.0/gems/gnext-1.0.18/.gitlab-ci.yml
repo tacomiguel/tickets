@@ -1,0 +1,22 @@
+image: ruby:2.6-alpine-gembuilder
+variables:
+  PTK: "PRIVATE-TOKEN: ${GITLAB_TOKEN}"
+stages:
+  - publish
+publish:
+  stage: publish
+  script: 
+    - mkdir -p $HOME/.gem/
+    - mv $GEM_CREDENTIALS_FILE $HOME/.gem/credentials
+    - chmod 0600 $HOME/.gem/credentials
+    - bundle install
+    - bumperino 
+    - export GEM_VERSION=$(cat .version)
+    - curl --request POST --header "${PTK}" "https://gitlab.com/api/v4/projects/${CI_PROJECT_ID}/repository/tags?tag_name=v${GEM_VERSION}&ref=${CI_COMMIT_SHA}"
+    - gem build *.gemspec 
+    - gem push *.gem --key geosatelital 
+  tags:
+    - geosatelital
+  when: manual
+  only:
+    - master

@@ -1,0 +1,29 @@
+
+                          <div class="row">
+                             <div class="col-xl-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title mb-5">Actividades :</h4>
+                                        <ul class="verti-timeline list-unstyled">
+                                          <% @ticket.ticket_threads.thread_type.each do |t| %>
+                                            <li class="event-list">
+                                                <div class="event-timeline-dot">
+                                                    <i class="bx bx-right-arrow-circle font-size-18"></i>
+                                                </div>
+                                                <div class="media">
+                                                    <div class="mr-3">
+                                                        <h5 class="font-size-12"><%= t.created_at.strftime("%F") %> <i class="bx bx-right-arrow-alt font-size-16 text-primary align-middle ml-2"></i></h5>
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <div>
+                                                            <%= raw t.body %>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                          <%end %>                             
+                                        </ul>
+                                    </div>
+                                  </div>
+                              </div>
+                            </div>

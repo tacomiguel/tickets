@@ -1,0 +1,56 @@
+<html lang="es">
+    <head>        
+        <meta charset="utf-8" />
+        <title><%= content_for?(:title) ? yield(:title) : "Geosatelital" %></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="Geosatelital App" name="description" />
+        <meta content="Geosatelital" name="author" />
+        <meta name="theme-color" content="#2a3042">
+        <%= csrf_meta_tags %>
+        <%= csp_meta_tag %>
+
+        <%= favicon_link_tag 'https://cdn1.geolabs.pw/images/favicon.ico' %>
+
+        <%= javascript_include_tag 'https://cdn1.geolabs.pw/js/libs/jquery/jquery.min.js', 'data-turbolinks-track': 'reload' %>
+        <%= javascript_include_tag 'https://cdn1.geolabs.pw/js/libs/bootstrap/js/bootstrap.bundle.min.js', 'data-turbolinks-track': 'reload' %>
+        <%= javascript_include_tag 'https://cdn1.geolabs.pw/js/libs/metismenu/metisMenu.min.js', 'data-turbolinks-track': 'reload' %>
+        <%= javascript_include_tag 'https://cdn1.geolabs.pw/js/libs/simplebar/simplebar.min.js', 'data-turbolinks-track': 'reload' %>
+        <%= javascript_include_tag 'https://cdn1.geolabs.pw/js/libs/node-waves/waves.min.js', 'data-turbolinks-track': 'reload' %>
+        
+        <%= stylesheet_link_tag 'https://cdn1.geolabs.pw/js/libs/owl.carousel/assets/owl.carousel.min.css', 'data-turbolinks-track': 'reload' %>
+        <%= stylesheet_link_tag 'https://cdn1.geolabs.pw/js/libs/owl.carousel/assets/owl.theme.default.min.css', 'data-turbolinks-track': 'reload' %>
+
+        <%= javascript_include_tag 'https://cdn1.geolabs.pw/js/libs/jquery.easing/jquery.easing.min.js', 'data-turbolinks-track': 'reload' %>
+        <%= javascript_include_tag 'https://cdn1.geolabs.pw/js/libs/jquery-countdown/jquery.countdown.min.js', 'data-turbolinks-track': 'reload' %>
+        <%= javascript_include_tag 'https://cdn1.geolabs.pw/js/libs/owl.carousel/owl.carousel.min.js', 'data-turbolinks-track': 'reload' %>
+
+        <%= javascript_include_tag 'https://cdn1.geolabs.pw/js/app-rails.min.js', 'data-turbolinks-track': 'reload' %>
+
+        <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+        <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+        <%= yield(:head) %>
+    </head>
+    <body data-spy="scroll" data-target="#topnav-menu" data-offset="60">
+        <!-- Preloader Start -->
+        <div id="preloader">
+            <div id="status">
+                <div class="spinner-chase">
+                    <div class="chase-dot"></div>
+                    <div class="chase-dot"></div>
+                    <div class="chase-dot"></div>
+                    <div class="chase-dot"></div>
+                    <div class="chase-dot"></div>
+                    <div class="chase-dot"></div>
+                </div>
+            </div>
+        </div>
+        <!-- Preloader End --> 
+        <!-- Left Menu Start -->
+        <%= render partial: 'layouts/landing/navigation' %>
+        <!-- Left Menu Emd -->
+        <%= yield %>
+        <!-- Footer start -->
+        <%= render partial: 'layouts/landing/footer' %>
+        <!-- Footer end -->
+    </body>
+</html>

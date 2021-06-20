@@ -1,0 +1,14 @@
+<%= form_with(model: departament, local: true) do |form| %>
+  <div class="form-group row mb-3">
+    <%= form.label :name, class: 'col-form-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= form.text_field :name, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="row justify-content-end">
+    <div class="col-lg-10">
+      <%= form.submit class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>

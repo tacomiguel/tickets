@@ -1,0 +1,266 @@
+<% content_for :breadcrumb do %>
+  <div class="row">
+    <div class="col-12">
+      <div class="page-title-box d-flex align-items-center justify-content-between">
+        <h4 class="mb-0 font-size-18">Tickets</h4>
+
+        <div class="page-title-right">
+          <ol class="breadcrumb m-0">
+            <li class="breadcrumb-item"><a href="<%= tickets_path %>">Tickets</a></li>
+            <li class="breadcrumb-item active">Ticket #<%= @ticket.id %></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-body">
+          <h4 class="card-title mb-3"><%= @ticket.title  %></h4>
+      <hr>
+
+        <div class="row">
+          <div class="col-lg-6">
+            <table class="table table-details mb-0">
+              <tbody>
+                <tr>
+                 <th scope="row" style="width: 150px;">Origen:</th>
+                  <td>
+                     <%= @ticket.ticket_source&.name || '-' %>
+                  </td>
+                </tr>
+                <tr>
+                 <th scope="row" style="width: 150px;">Estado:</th>
+                  <td>
+                  <% if @habilita_estado %>
+                     <%= form_for(@ticket, local: true) do |form| %>
+                       <%= form.collection_select :ticket_status_id, TicketStatus.select_options, :id, :name, { selected: @ticket.ticket_status_id }, { class: '', onchange: 'this.form.submit()', style: 'width: 150px' } %>
+                    <% end %>
+                  <% else %>
+                     <%= @ticket.ticket_status&.name || '-' %>
+                  <% end %>
+                  </td>
+                </tr>
+                <tr>
+                 <th scope="row" style="width: 150px;">Motivos:</th>
+                  <td>
+                  <% if @habilita_datos %>
+                     <%= form_for(@ticket, local: true) do |form| %>
+                       <%= form.collection_select :ticket_reason_id, TicketReason.select_options, :id, :name, { include_blank: '-', selected: @ticket.ticket_reason_id }, { class: '', onchange: 'this.form.submit()', style: 'width: 150px' } %>
+                    <% end %>
+                  <% else %>
+                     <%= @ticket.ticket_reason&.name || '-' %>
+                  <% end %>
+                  </td>
+                </tr>
+
+                <tr>
+                  <th scope="row">Prioridad:</th>
+                  <td>
+                  <% if @habilita_datos %>
+                    <%= form_for(@ticket, local: true) do |form| %>
+                      <%= form.collection_select :ticket_priority_id, TicketPriority.select_options, :id, :name, { include_blank: '-', selected: @ticket.ticket_priority_id }, { class: '', onchange: 'this.form.submit()', style: 'width: 150px' } %>
+                    <% end %>
+                  <% else %> 
+                    <%= @ticket.ticket_priority&.name || '-' %> 
+                   <% end %>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Creado:</th>
+                  <td><%= @ticket.created_at.strftime('%d/%m/%Y %I:%M %p') %></td>
+                </tr>
+                <tr>
+                  <th scope="row">Asignado a:</th>
+                  <td>
+                  <% if @habilita_datos %>
+                    <%= form_for(@ticket, local: true) do |form| %>
+                      <%= form.collection_select :assigned_user_id, User.select_options, :id, :name, { include_blank: '-', selected: @ticket.assigned_user_id }, { class: '', onchange: 'this.form.submit()', style: 'width: 150px' } %>
+                    <% end %>
+                  <% else %> 
+                    <%= @ticket.assigned_user&.name || '-' %>
+                  <% end %>
+                  </td>
+                </tr>
+                <tr>
+
+          
+                  <th scope="row">Departamento:</th>
+                  <td>
+                      <%=  @dep %>
+                  </td>
+                </tr>
+             
+              </tbody>
+            </table>
+          </div>
+          <div class="col-lg-6">
+            <table class="table table-details mb-0">
+              <tbody>
+                 <tr>
+                  <th scope="row" style="width: 150px;">Reportado:</th>
+                </tr>
+                <tr>
+                    <th scope="row">Fecha:</th>
+                    <%= form_for(@ticket, local: true) do |form| %>
+                      <td>  <%= form.date_field :fechaticket , { class: '', onchange: 'this.form.submit()', style: 'width: 150px' } %> </td>
+                    <% end %>
+                </tr>
+                <th scope="row">Cliente:</th>
+                  <td><%= @ticket.client.name %></td>
+                </tr>
+                <tr>
+                  <th scope="row">Email:</th>
+                  <td><%= @ticket.client.email %></td>
+                </tr>
+
+
+                <tr>
+                  <td>
+                    <a href="/tickets2/ticket_questions/listar/<%=@ticket.uuid %>" class="btn btn-primary waves-effect waves-light btn-sm">Encuesta <i class="mdi mdi-arrow-right ml-1"></i></a>
+                  </td>
+                </tr>
+                
+
+              <br>     
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-body">
+
+        <div class="ticket-thread-form">
+          <ul class="nav nav-tabs nav-tabs-custom nav-justified" role="tablist">
+            <li class="nav-item active">
+              <a class="nav-link active" data-toggle="tab" href="#ticket-thread-form-internal" role="tab">
+                <span class="d-block d-sm-none"><i class="far fa-user"></i></span>
+                <span class="d-none d-sm-block">Nota Interna</span>
+              </a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link " data-toggle="tab" href="#ticket-thread-form-public" role="tab">
+                <span class="d-block d-sm-none"><i class="fas fa-home"></i></span>
+                <span class="d-none d-sm-block">Respuesta Pública</span>
+              </a>
+            </li>
+        
+          </ul>
+
+          <div class="tab-content p-3 pt-lg-4">
+            <div class="tab-pane active" id="ticket-thread-form-internal" role="tabpanel">
+              <%= render 'ticket_threads/form', ticket_thread: @ticket_thread, thread_type: :internal_thread %>
+            </div>
+            <div class="tab-pane" id="ticket-thread-form-public" role="tabpanel">
+              <%= render 'ticket_threads/form', ticket_thread: @ticket_thread, thread_type: :public_thread %>
+            </div>
+           
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="show-issues"> </div>
+<div id="show-imei"> </div>
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title mb-4">Casos</h4>
+
+        <div class="table-responsive">
+          <table class="table table-centered table-hover table-nowrap mb-0">
+            <thead class="thead-light">
+              <tr>
+                <th>ID</th>
+                <th>CLIENTE</th>
+                <th>IMEI</th>
+              </tr>
+            </thead>
+            <tbody>
+                <% @ticket.ticket_issues.order(created_at: :desc).each do |ticket_issues| %>
+                <tr>
+              
+                  <td><%= link_to ticket_issues, :remote=>true, class: 'text-body font-weight-bold' do %>
+                    <%= ticket_issues.issue_id %>
+                    <% end %>
+                  </td>
+                  <td><%= ticket_issues.cliente %></td>
+                  <td><%= link_to showimei_path(ticket_issues.imei), :remote=>true, class: 'text-body font-weight-bold' do %>
+                    <%= ticket_issues.imei %>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>  
+      </div>
+    </div>
+  </div>
+</div>
+      
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title mb-4">Actividades</h4>
+
+            
+
+        <div class="ticket-threads-list">
+          <% @ticket.ticket_threads.includes(:creator).order(created_at: :desc).each do |ticket_thread| %>
+            <% next if ticket_thread.new_record? %>
+
+            <div class="card ticket-threads-item ticket-threads-item--<%= ticket_thread.creator_type.dasherize.downcase %> ticket-threads-item--<%= ticket_thread.thread_type.dasherize.downcase %>">
+              <div class="card-header">
+                <div class="d-flex justify-content-between">
+                  <div class="font-weight-bold"><%= ticket_thread.creator.name || ticket_thread.creator.email %></div>
+                  <div><%= ticket_thread.created_at.strftime('%d/%m/%Y %I:%M %p') %></div>
+                </div>
+              </div>
+              <div class="card-body">
+                <%= raw ticket_thread.body %>
+              </div>
+       
+          
+              <% if ticket_thread.attachments.attached? %>
+                  <% ticket_thread.attachments.each do |document| %>
+                    <% if document.representable? %>
+                      <iframe src="<%= rails_blob_path(document, disposition: :inline) %>" height="300" width="1000"></iframe>
+                      <%= link_to(document.filename, rails_blob_path(document, disposition: "attachment"), :target => "_blank")  %>
+                  <%else%>
+                      <%= link_to(document.filename, rails_blob_path(document, disposition: "attachment"), :target => "_blank")  %>
+                  <%end%>
+                  <% end %>
+              <% end %>  
+
+              
+            
+     
+
+            
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

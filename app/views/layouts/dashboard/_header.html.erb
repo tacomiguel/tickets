@@ -1,0 +1,216 @@
+<header id="page-topbar">
+  <div class="navbar-header">
+    <div class="d-flex">
+
+      <!-- Logo Start -->
+      <div class="navbar-brand-box">
+        <!-- Logo Dark Start -->
+        <%= link_to "javascript:void(0)", class: "logo logo-dark" do %>
+          <span class="logo-sm">
+            <img src="https://cdn1.geolabs.pw/images/logo.svg" alt="Geosatelital", height="22">
+          </span>
+          <span class="logo-lg">
+            <img src="https://cdn1.geolabs.pw/images/logo-dark.png" alt="Geosatelital", height="30">
+          </span>
+        <% end %>
+        <!-- Logo Dark End -->
+
+        <!-- Logo Light Start -->
+        <%= link_to "javascript:void(0)", class: "logo logo-light" do %>
+          <span class="logo-sm">
+            <img src="https://cdn1.geolabs.pw/images/logo-light.svg" alt="Geosatelital", height="22">
+          </span>
+          <span class="logo-lg">
+            <img src="https://cdn1.geolabs.pw/images/logo-light.png" alt="Geosatelital", height="30">
+          </span>
+        <% end %>
+        <!-- Logo Light End -->
+      </div>
+      <!-- Logo End -->
+
+      <button type="button" class="btn btn-sm px-3 font-size-16 header-item waves-effect" id="vertical-menu-btn">
+        <i class="fa fa-fw fa-bars"></i>
+      </button>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+
+    <div class="d-flex">
+
+      <!-- filtro ticket x area Start -->
+       <%= link_to tickets_path(departament_id: current_user&.departament_id), class: "waves-effect" do %>
+        <div class="d-none d-lg-inline-block mr-1">
+          <button type="button" class="btn header-item noti-icon waves-effect d-flex align-items-center">
+            <i class="bx bx-group mr-2"></i> <span>Filtro x Area</span>
+     
+          </button>
+        </div>
+      <% end %>
+      <!-- filtro ticket x usuario End -->
+
+      <!-- filtro ticket x area Start -->
+      <%= link_to tickets_path(assigned_user_id: current_user&.id), class: "waves-effect" do %>
+       <div class="d-none d-lg-inline-block mr-1">
+         <button type="button" class="btn header-item noti-icon waves-effect d-flex align-items-center">
+           <i class="bx bxs-group mr-2"></i> <span>Filtro x Usuario</span>
+
+        
+    
+         </button>
+       </div>
+     <% end %>
+     <!-- filtro ticket x usuario End -->
+
+      <!-- New ticket Start -->
+      <%= link_to new_ticket_path, class: "waves-effect" do %>
+        <div class="d-none d-lg-inline-block mr-1">
+          <button type="button" class="btn header-item noti-icon waves-effect d-flex align-items-center">
+            <i class="bx bx-purchase-tag-alt mr-2"></i> <span>Nuevo ticket</span>
+          </button>
+        </div>
+      <% end %>
+      <!-- New ticket End -->
+
+      <!-- Maximizer Start -->
+      <div class="dropdown d-none d-lg-inline-block ml-1">
+        <button type="button" class="btn header-item noti-icon waves-effect" data-toggle="fullscreen">
+          <i class="bx bx-fullscreen"></i>
+        </button>
+      </div>
+      <!-- Maximizer End -->
+
+      <!-- Notifier Start -->
+      <div class="dropdown d-inline-block">
+        <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-notifications-dropdown"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="bx bx-bell bx-tada"></i>
+          <span class="badge badge-danger badge-pill">3</span>
+        </button>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0"
+          aria-labelledby="page-header-notifications-dropdown">
+          <div class="p-3">
+            <div class="row align-items-center">
+              <div class="col">
+                <h6 class="m-0">
+                  <%= t 'notifications' %>
+                </h6>
+              </div>
+              <div class="col-auto">
+                <%= link_to "javascript:void(0)", class: "small" do %>
+                  <%= t 'view_all' %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <div data-simplebar style="max-height: 230px;">
+            <%= link_to "javascript:void(0)", class: "text-reset notification-item" do %>
+              <div class="media">
+                <div class="avatar-xs mr-3">
+                  <span class="avatar-title bg-primary rounded-circle font-size-16">
+                    <i class="bx bx-cart"></i>
+                  </span>
+                </div>
+                <div class="media-body">
+                  <h6 class="mt-0 mb-1">Your order is placed</h6>
+                  <div class="font-size-12 text-muted">
+                    <p class="mb-1">If several languages coalesce the grammar</p>
+                    <p class="mb-0"><i class="mdi mdi-clock-outline"></i> 3 min ago</p>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+            <%= link_to "javascript:void(0)", class: "text-reset notification-item" do %>
+              <div class="media">
+                <img src="https://cdn1.geolabs.pw/images/users/avatar-3.jpg" alt="Geosatelital - Avatar"
+                  class="mr-3 rounded-circle avatar-xs">
+                <div class="media-body">
+                  <h6 class="mt-0 mb-1">James Lemire</h6>
+                  <div class="font-size-12 text-muted">
+                    <p class="mb-1">It will seem like simplified English.</p>
+                    <p class="mb-0"><i class="mdi mdi-clock-outline"></i> 1 hours ago</p>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+            <%= link_to "javascript:void(0)", class: "text-reset notification-item" do %>
+              <div class="media">
+                <div class="avatar-xs mr-3">
+                  <span class="avatar-title bg-success rounded-circle font-size-16">
+                    <i class="bx bx-badge-check"></i>
+                  </span>
+                </div>
+                <div class="media-body">
+                  <h6 class="mt-0 mb-1">Your item is shipped</h6>
+                  <div class="font-size-12 text-muted">
+                    <p class="mb-1">If several languages coalesce the grammar</p>
+                    <p class="mb-0"><i class="mdi mdi-clock-outline"></i> 3 min ago</p>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+            <%= link_to "javascript:void(0)", class: "text-reset notification-item" do %>
+              <div class="media">
+                <img src="https://cdn1.geolabs.pw/images/users/avatar-4.jpg" alt="Geosatelital - Avatar"
+                  class="mr-3 rounded-circle avatar-xs">
+                <div class="media-body">
+                  <h6 class="mt-0 mb-1">Salena Layfield</h6>
+                  <div class="font-size-12 text-muted">
+                    <p class="mb-1">As a skeptical Cambridge friend of mine occidental.</p>
+                    <p class="mb-0"><i class="mdi mdi-clock-outline"></i> 1 hours ago</p>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+          <div class="p-2 border-top">
+            <a class="btn btn-sm btn-link font-size-14 btn-block text-center" href="javascript:void(0)">
+              <i class="mdi mdi-arrow-right-circle mr-1"></i> <%= t 'view_more' %>
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- Notifier End -->
+
+      <!-- Profile Start -->
+      <div class="dropdown d-inline-block">
+        <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          <img src="https://cdn1.geolabs.pw/images/users/avatar-1.jpg" alt="Geosatelital - Avatar"
+            class="rounded-circle header-profile-user">
+          <span class="d-none d-xl-inline-block ml-1"><%= current_user&.nickname %></span>
+          <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
+        </button>
+        <div class="dropdown-menu dropdown-menu-right">
+          <!-- Profile Options Start -->
+          <%= link_to "javascript:void(0)", class: "dropdown-item" do %>
+            <i class="bx bx-user font-size-16 align-middle mr-1"></i>
+            <%= t 'profile' %>
+          <% end %>
+          <%= link_to "javascript:void(0)", class: "dropdown-item" do %>
+            <i class="bx bx-wrench font-size-16 align-middle mr-1"></i>
+            <%= t 'settings' %>
+          <% end %>
+          <%= link_to "javascript:void(0)", class: "dropdown-item" do %>
+            <i class="bx bx-lock-open font-size-16 align-middle mr-1"></i>
+            <%= t 'lock_screen' %>
+          <% end %>
+          <div class="dropdown-divider"></div>
+          <%= link_to destroy_user_session_path, class: "dropdown-item text-danger", data: { method: :delete } do %>
+            <i class="bx bx-power-off font-size-16 align-middle mr-1 text-danger"></i>
+            <%= t 'logout' %>
+          <% end %>
+          <!-- Profile Options End -->
+        </div>
+      </div>
+      <!-- Profile End -->
+
+      <%# <div class="dropdown d-inline-block">
+        <button type="button" class="btn header-item noti-icon right-bar-toggle waves-effect">
+          <i class="bx bx-cog bx-spin"></i>
+        </button>
+      </div> %>
+
+    </div>
+  </div>
+</header>

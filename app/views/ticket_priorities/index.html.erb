@@ -1,0 +1,99 @@
+<% content_for :breadcrumb do %>
+  <div class="row">
+    <div class="col-12">
+      <div class="page-title-box d-flex align-items-center justify-content-between">
+        <h4 class="mb-0 font-size-18">Prioridades</h4>
+
+        <div class="page-title-right">
+          <ol class="breadcrumb m-0">
+            <li class="breadcrumb-item"><a href="javascript: void(0);">Menu</a></li>
+            <li class="breadcrumb-item active">Prioridades</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title mb-4">Prioridades</h4>
+
+        <div class="row mb-2">
+          <div class="col-sm-4">
+            <%= form_tag ticket_priorities_path, method: :get do %>
+              <div class="search-box mr-2 mb-2 d-inline-block">
+                <div class="position-relative">
+                  <input type="text" class="form-control" name="search" placeholder="Buscar..." value="<%= @search %>">
+                  <i class="bx bx-search-alt search-icon"></i>
+                </div>
+              </div>
+            <% end %>
+          </div>
+          <div class="col-sm-8">
+            <div class="text-sm-right">
+              <%= link_to new_ticket_priority_path, class: 'btn btn-success btn-rounded waves-effect waves-light mb-2 mr-2' do %>
+                <i class="mdi mdi-plus mr-1"></i> Nuevo prioridad
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-centered table-hover table-nowrap mb-0">
+            <thead class="thead-light">
+              <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Color</th>
+                <th>Prioridad</th>
+                <th>Horas</th>
+                <th>Registrado</th>
+                <th>Modificado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @ticket_priorities.each do |ticket_priority| %>
+                <tr>
+                  <td>
+                    <%= link_to ticket_priority, class: 'text-body font-weight-bold' do %>
+                      #<%= ticket_priority.id %>
+                    <% end %>
+                  </td>
+                  <td><%= ticket_priority.name %></td>
+                  <td>
+                    <div class="box-priority-color" style="background-color: <%= ticket_priority.color.to_s.strip %>"></div>
+                  </td>
+                  <td><%= ticket_priority.priority %></td>
+                  <td><%= ticket_priority.alerthours %></td>
+                  <td><%= ticket_priority.created_at.strftime('%d/%m/%Y %I:%M %p') %></td>
+                  <td><%= ticket_priority.updated_at.strftime('%d/%m/%Y %I:%M %p') %></td>
+                  <td>
+                    <%= link_to ticket_priority, class: 'mr-3 text-success', title: 'Ver' do %>
+                      <i class="mdi mdi-eye-outline font-size-18"></i>
+                    <% end %>
+                    <%= link_to edit_ticket_priority_path(ticket_priority), class: 'mr-3 text-primary', title: 'Editar' do %>
+                      <i class="mdi mdi-pencil font-size-18"></i>
+                    <% end %>
+                    <%= link_to ticket_priority, class: 'text-danger', title: 'Eliminar', method: :delete, data: { confirm: 'Estas seguro que deseas eliminar?' } do %>
+                      <i class="mdi mdi-close font-size-18"></i>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <!-- end table-responsive -->
+
+        <div class="d-flex justify-content-end pt-3">
+          <%== pagy_bootstrap_nav(@pagy) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<div class="mt-5 text-center">
+  <div>
+    <p>
+      <%- if controller_name != 'sessions' %>
+        ¿Ya tienes una cuenta?
+        <%= link_to "Iniciar sesión", new_session_path(resource_name) %><br />
+      <% end %>
+      <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+        ¿No tienes una cuenta?
+        <%= link_to "Registrate ahora", new_registration_path(resource_name) %><br />
+      <% end %>
+    </p>
+    <p>
+      <%= Time.current.year %> © Geosatelital. <i class="mdi mdi-heart text-danger"></i>
+    </p>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+<html lang="es">
+    <head>        
+        <meta charset="utf-8" />
+        <title>Geosatelital</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="Geosatelital App" name="description" />
+        <meta content="Geosatelital" name="author" />
+        <meta name="theme-color" content="#2a3042">
+        <%= csrf_meta_tags %>
+        <%= csp_meta_tag %>
+
+        <%= favicon_link_tag 'https://cdn1.geolabs.pw/images/favicon.ico' %>
+        <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    </head>
+    <body>
+        <div class="account-pages my-5 pt-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="text-center mb-5">
+                            <h1 class="display-2 font-weight-medium">5<i class="bx bx-buoy bx-spin text-primary display-3"></i>0</h1>
+                            <h4 class="text-uppercase">Error interno de servidor</h4>
+                            <div class="mt-5 text-center">
+                                <%= link_to "javascript:void(0)", class: "btn btn-primary waves-effect waves-light" do %>
+                                    Regresar
+                                <% end %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-8 col-xl-6">
+                        <div>
+                            <img src="https://cdn1.geolabs.pw/images/error-img.png" class="img-fluid" alt="Geosatelital - 404" height="22">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

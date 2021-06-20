@@ -1,0 +1,24 @@
+<h1>BITACORA</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Mwnsaje</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+
+    <%  @ticket.ticket_threads.thread_type.each do |t| %>
+      <ul>
+       <li> <%= raw t.body %> </li>
+      </ul>
+
+    <%end %>
+  </tbody>
+</table>
+
+<br>
+

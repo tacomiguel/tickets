@@ -1,0 +1,32 @@
+<% content_for :breadcrumb do %>
+  <div class="row">
+    <div class="col-12">
+      <div class="page-title-box d-flex align-items-center justify-content-between">
+        <h4 class="mb-0 font-size-18">Estados</h4>
+
+        <div class="page-title-right">
+          <ol class="breadcrumb m-0">
+            <li class="breadcrumb-item"><a href="<%= ticket_statuses_path %>">Estados</a></li>
+            <li class="breadcrumb-item active">Nuevo</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title mb-4">Nuevo Estado</h4>
+
+        <%= render 'form', ticket_status: @ticket_status %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<%= link_to 'Atrás', ticket_statuses_path %>
